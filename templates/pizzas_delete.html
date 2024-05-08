@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+  Você tem certeza que deseja excluir a pizza sabor <b>{{pizza.sabor}}?</b>
+  <form method='post' action='/pizzas/delete/{{pizza.id}}'>
+    <input type="submit" value="Sim">
+  </form>
+  <a href="/pizzas">Cancelar</a>
+{% endblock%}

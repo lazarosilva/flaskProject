@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+
+	<form method='post' action='/pizzas/create'>
+	  Sabor: <input type="text" name="sabor"><br>
+	  Ingredientes: <input type="text" name="ingredientes"><br>
+      Preço: <input type="text" name="preco"><br>
+    <input type="submit" value="Cadastrar">
+	</form>
+
+{% endblock %}

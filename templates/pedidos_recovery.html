@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+		
+	<ul>
+      {% for p in pedidos %}
+        <li>
+          {{p.data}} - {{p.usuario.nome}} - {{p.pizza.sabor}}
+          <a href="/pedidos/update/{{p.id}}">editar</a>
+          <a href="/pedidos/delete/{{p.id}}">excluir</a>
+        </li>
+      {% endfor %}
+    </ul>
+{% endblock %}

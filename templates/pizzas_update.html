@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<form action="/pizzas/update/{{pizza.id}}" method="POST">
+    Sabor: <input type="text" name="sabor" value="{{pizza.sabor}}"><br>
+    Ingredientes: <input type="text" name="ingredientes" value="{{pizza.ingredientes}}"><br>
+    Preço: <input type="text" name="preco" value="{{pizza.preco}}"><br>
+  <input type="submit" name="Atualizar">
+  <input type="reset" name="Limpar">
+</form>
+{% endblock %}
