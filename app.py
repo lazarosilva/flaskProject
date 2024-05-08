@@ -30,10 +30,16 @@ def index():
 def cardapio():
   return render_template('cardapio.html')
 
-""" @app.route('/login')
+@app.route('/login')
 def login():
   return render_template('login.html')
 
+@app.errorhandler(401)
+def acesso_negado(e):
+    # note that we set the 404 status explicitly
+    return render_template('acesso_negado.html'), 404
+
+""" 
 @app.route('/autenticar', methods=['POST'])
 def autenticar():
     usuario = request.form["usuario"]

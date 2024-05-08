@@ -3,6 +3,7 @@ from flask import render_template, request, redirect, flash, url_for
 from models import Usuario
 from database import db, lm
 from datetime import date
+from flask_login import login_user, logout_user, login_required
 
 bp_usuarios = Blueprint("usuarios", __name__, template_folder="templates")
 
@@ -21,6 +22,7 @@ def create():
         return 'Usuario cadastrado com sucesso'
 
 @bp_usuarios.route('/recovery')
+@login_required
 def recovery():
     usuarios = Usuario.query.all()
     return render_template('usuarios_recovery.html', usuarios=usuarios)
@@ -68,3 +70,20 @@ def load_user(id):
     usuario = Usuario.query.filter_by(id=id).first()
     #usuario = Usuario.query.get(id)
     return usuario
+
+@bp_usuarios.route('/autenticar', methods=['POST'])
+def autenticar():
+  email = request.form.get('email')
+  senha = request.form.get('senha')
+  usuario = Usuario.query.filter_by(email = email).first()
+  if (senha == usuario.senha):
+    login_user(usuario)
+    return redirect('recovery')
+  else:
+    flash('Dados incorretos')
+    return 'DEU XABU!!!'
+
+@bp_usuarios.route('/logoff')
+def logoff():
+	logout_user()
+	return redirect('/')
